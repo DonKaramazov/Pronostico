@@ -4,9 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Pronostico.Objet.Helpers;
 
-namespace Pronostico.Objet.Models
+namespace Pronostico.Data.Entities
 {
     public class Match
     {

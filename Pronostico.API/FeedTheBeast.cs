@@ -1,5 +1,6 @@
-﻿using Pronostico.DAL;
-using Pronostico.Objet.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Pronostico.Data;
+using System.Diagnostics;
 
 namespace Pronostico.API
 {
@@ -8,17 +9,7 @@ namespace Pronostico.API
 
         public static void Seed()
         {
-            PronosticoSaisonContext context = new PronosticoSaisonContext();
-
-            Equipe monaco = new Equipe()
-            {
-                Nom = "AS Monaco",
-                Accronyme = "ASM",
-                Description = "Le club de la principauté",                       
-            };
-
-            context.Equipes.Add(monaco);
-            context.SaveChanges();
+            //Ajouter des données au démarrage
         }
     }
 }

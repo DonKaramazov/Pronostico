@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Pronostico.DAL.Migrations
+namespace Pronostico.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

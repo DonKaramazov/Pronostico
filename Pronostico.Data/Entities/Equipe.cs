@@ -4,10 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pronostico.Objet.Models
+namespace Pronostico.Data.Entities
 {
     public class Equipe
     {
+        public Equipe()
+        {
+            
+        }
+
         public Equipe(string nomComplet, string nomCourt, string accronyme, string description, string? imagePath)
         {
             NomComplet = nomComplet;

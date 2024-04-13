@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Pronostico.DAL;
+using Pronostico.Data;
 
 #nullable disable
 
-namespace Pronostico.DAL.Migrations
+namespace Pronostico.Data.Migrations
 {
     [DbContext(typeof(PronosticoSaisonContext))]
-    [Migration("20240407203526_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240408062909_nomComplet-nomCourt")]
+    partial class nomCompletnomCourt
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,7 +44,11 @@ namespace Pronostico.DAL.Migrations
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nom")
+                    b.Property<string>("NomComplet")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomCourt")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

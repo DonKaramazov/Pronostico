@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using Pronostico.API;
+using Pronostico.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+//builder.Services.AddDbContext<PronosticoSaisonContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Pronostico")));
 
 var app = builder.Build();
 
@@ -23,5 +26,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+FeedTheBeast.Seed();
 
 app.Run();

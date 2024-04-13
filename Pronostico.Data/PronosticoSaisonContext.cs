@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Pronostico.Objet.Models;
+using Pronostico.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pronostico.DAL
+namespace Pronostico.Data
 {
     public class PronosticoSaisonContext : DbContext
     {
@@ -15,6 +15,15 @@ namespace Pronostico.DAL
         public DbSet<Joueur> Joueurs { get; set; } = null!;
 
         public DbSet<Equipe> Equipes { get; set; } = null!;
+
+        public DbSet<Match> Matchs { get; set; } = null!;
+
+        public PronosticoSaisonContext()
+        {
+            
+        }
+
+        // public PronosticoSaisonContext(DbContextOptions<PronosticoSaisonContext> options) : base(options) { }
 
 
 
