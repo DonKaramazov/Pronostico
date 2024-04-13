@@ -20,7 +20,7 @@ namespace Pronostico.Objet.Contextes
                 Id = e.Id,
                 NomComplet = e.NomComplet,
                 NomCourt = e.NomCourt,
-                Accronyme = e.NomCourt,
+                Accronyme = e.Accronyme,
                 Description = e.Description,
                 ImagePath = e.ImagePath
             });

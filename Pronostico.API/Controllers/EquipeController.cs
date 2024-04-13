@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Pronostico.API.Outils;
 using Pronostico.Objet.Contextes;
 using Pronostico.Objet.Contextes.Models;
 
@@ -12,34 +13,39 @@ namespace Pronostico.API.Controllers
     public class EquipeController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<EquipeModel> Get() 
+        public ApiResult<IEnumerable<EquipeModel>> Get() 
         {
-            return new EquipeContext().GetEquipes();
+            return ApiResultFuncHelper.TryEx(() =>
+            {
+                return new EquipeContext().GetEquipes();
+            });
         }
 
         // GET: api/Customers/5
         [HttpGet("{id}", Name = "GetById")]
-        public IActionResult GetById(int id)
+        public ApiResult<EquipeModel> GetById(int id)
         {
-            EquipeContext ctx = new();
+            return ApiResultFuncHelper.TryEx(() =>
+            {
+                EquipeContext ctx = new();
 
-            EquipeModel? equipe = ctx.GetEquipe(id);
-            if (equipe == null)
-            { return NotFound(); }
-            return new ObjectResult(equipe);
+                EquipeModel? equipe = ctx.GetEquipe(id);
+                if (equipe == null)
+                    throw new MetierException(Libelles.LIBCOD_NOTFOUND, Libelles.ERRCOD_NOTFOUND);
+
+                return equipe;
+            });
         }
 
         [HttpPost]
-        public IActionResult CreateOrUpdate([FromBody] EquipeModel equipe)
+        public ApiResult<EquipeModel> CreateOrUpdate([FromBody] EquipeModel equipe)
         {
-            if(equipe == null)
+            return ApiResultFuncHelper.TryEx(() =>
             {
-                return BadRequest();
-            }
+                new EquipeContext().DbSauver(equipe);
 
-            new EquipeContext().DbSauver(equipe);
-          
-            return CreatedAtRoute("GetById", new { id = equipe.Id }, equipe);
+                return equipe;
+            });
         }
 
     }
