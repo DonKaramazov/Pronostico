@@ -1,4 +1,6 @@
-﻿namespace Pronostico.Data.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Pronostico.Data.Entities
 {
     public class Joueur
     {
@@ -14,8 +16,10 @@
 
         public string? AvatarFile { get; set; }
 
-        public int EquipeId { get; set; }
+        
+        public int? EquipeId { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Equipe? EquipeDeCoeur { get; set; }
     }
 }

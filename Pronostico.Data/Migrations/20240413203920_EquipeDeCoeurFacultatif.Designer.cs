@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pronostico.Data;
 
@@ -11,9 +12,11 @@ using Pronostico.Data;
 namespace Pronostico.Data.Migrations
 {
     [DbContext(typeof(PronosticoSaisonContext))]
-    partial class PronosticoSaisonContextModelSnapshot : ModelSnapshot
+    [Migration("20240413203920_EquipeDeCoeurFacultatif")]
+    partial class EquipeDeCoeurFacultatif
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,7 +54,7 @@ namespace Pronostico.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Equipes", (string)null);
+                    b.ToTable("Equipes");
                 });
 
             modelBuilder.Entity("Pronostico.Data.Entities.EquipeSaison", b =>
@@ -74,7 +77,7 @@ namespace Pronostico.Data.Migrations
 
                     b.HasIndex("SaisonId");
 
-                    b.ToTable("EquipeSaison", (string)null);
+                    b.ToTable("EquipeSaison");
                 });
 
             modelBuilder.Entity("Pronostico.Data.Entities.Joueur", b =>
@@ -110,7 +113,7 @@ namespace Pronostico.Data.Migrations
 
                     b.HasIndex("EquipeId");
 
-                    b.ToTable("Joueurs", (string)null);
+                    b.ToTable("Joueurs");
                 });
 
             modelBuilder.Entity("Pronostico.Data.Entities.JoueurSaison", b =>
@@ -133,7 +136,7 @@ namespace Pronostico.Data.Migrations
 
                     b.HasIndex("SaisonId");
 
-                    b.ToTable("JoueurSaison", (string)null);
+                    b.ToTable("JoueurSaison");
                 });
 
             modelBuilder.Entity("Pronostico.Data.Entities.Journee", b =>
@@ -158,7 +161,7 @@ namespace Pronostico.Data.Migrations
 
                     b.HasIndex("SaisonId");
 
-                    b.ToTable("Journee", (string)null);
+                    b.ToTable("Journee");
                 });
 
             modelBuilder.Entity("Pronostico.Data.Entities.Match", b =>
@@ -206,7 +209,7 @@ namespace Pronostico.Data.Migrations
 
                     b.HasIndex("MatchId");
 
-                    b.ToTable("Matchs", (string)null);
+                    b.ToTable("Matchs");
                 });
 
             modelBuilder.Entity("Pronostico.Data.Entities.Saison", b =>
@@ -232,7 +235,7 @@ namespace Pronostico.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Saisons", (string)null);
+                    b.ToTable("Saisons");
                 });
 
             modelBuilder.Entity("Pronostico.Data.Entities.EquipeSaison", b =>
@@ -298,13 +301,13 @@ namespace Pronostico.Data.Migrations
                     b.HasOne("Pronostico.Data.Entities.Equipe", "EquipeDom")
                         .WithMany()
                         .HasForeignKey("EquipeDomId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Pronostico.Data.Entities.Equipe", "EquipeExt")
                         .WithMany()
                         .HasForeignKey("EquipeExtId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Pronostico.Data.Entities.Journee", null)

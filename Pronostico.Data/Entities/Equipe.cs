@@ -10,7 +10,7 @@ namespace Pronostico.Data.Entities
     {
         public Equipe()
         {
-            
+
         }
 
         public Equipe(string nomComplet, string nomCourt, string accronyme, string description, string? imagePath)

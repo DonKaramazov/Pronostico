@@ -4,49 +4,46 @@ using Pronostico.API.Outils;
 using Pronostico.Objet.Contextes;
 using Pronostico.Objet.Contextes.Models;
 
-
-
 namespace Pronostico.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EquipeController : ControllerBase
+    public class JoueurController : Controller
     {
         [HttpGet]
-        public ApiResult<IEnumerable<EquipeModel>> Get() 
+        public ApiResult<IEnumerable<JoueurModel>> Get()
         {
             return ApiResultFuncHelper.TryEx(() =>
             {
-                return new EquipeContext().GetEquipes();
+                return new JoueurContext().GetJoueurs();
             });
         }
 
         //[HttpGet("{id}", Name = "GetById")]
-        [HttpGet("Get/{idEquipe}")]
-        public ApiResult<EquipeModel> GetById(int idEquipe)
+        [HttpGet("Get/{idJoueur}")]
+        public ApiResult<JoueurModel> GetById(int idJoueur)
         {
             return ApiResultFuncHelper.TryEx(() =>
             {
-                EquipeContext ctx = new();
+                JoueurContext ctx = new();
 
-                EquipeModel? equipe = ctx.GetEquipe(idEquipe);
-                if (equipe == null)
+                JoueurModel? joueur = ctx.GetJoueur(idJoueur);
+                if (joueur == null)
                     throw new MetierException(Libelles.LIBCOD_NOTFOUND, Libelles.ERRCOD_NOTFOUND);
 
-                return equipe;
+                return joueur;
             });
         }
 
         [HttpPost]
-        public ApiResult<EquipeModel> CreateOrUpdate([FromBody] EquipeModel equipe)
+        public ApiResult<JoueurModel> CreateOrUpdate([FromBody] JoueurModel joueur)
         {
             return ApiResultFuncHelper.TryEx(() =>
             {
-                new EquipeContext().DbSauver(equipe);
+                new JoueurContext().DbSauver(joueur);
 
-                return equipe;
+                return joueur;
             });
         }
-
     }
 }

@@ -25,7 +25,12 @@ namespace Pronostico.Data
 
         // public PronosticoSaisonContext(DbContextOptions<PronosticoSaisonContext> options) : base(options) { }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Joueur>().Property(j => j.EquipeId).ValueGeneratedNever();  
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

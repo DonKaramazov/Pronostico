@@ -15,15 +15,7 @@ namespace Pronostico.Objet.Contextes
 
         public IEnumerable<EquipeModel> GetEquipes()
         {
-            return _context.Equipes.Select(e => new EquipeModel()
-            {
-                Id = e.Id,
-                NomComplet = e.NomComplet,
-                NomCourt = e.NomCourt,
-                Accronyme = e.Accronyme,
-                Description = e.Description,
-                ImagePath = e.ImagePath
-            });
+            return _context.Equipes.Select(e => EquipeModel.ModelFromObj(e));
         }
 
         // On s'amuse avec les différentes manières d'écrire les requetes
@@ -36,7 +28,7 @@ namespace Pronostico.Objet.Contextes
                         Id = e.Id,
                         NomComplet = e.NomComplet,
                         NomCourt = e.NomCourt,
-                        Accronyme = e.NomCourt,
+                        Accronyme = e.Accronyme,
                         Description = e.Description,
                         ImagePath = e.ImagePath
                     }).FirstOrDefault();
